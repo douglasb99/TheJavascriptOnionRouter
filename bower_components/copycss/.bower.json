@@ -1,0 +1,33 @@
+{
+  "name": "copycss",
+  "homepage": "https://github.com/moagrius/copycss",
+  "authors": [
+    "Mike Dunn"
+  ],
+  "description": "jQuery extension to retrieve or copy all styles from an HTML element.",
+  "main": "jquery.copycss.js",
+  "keywords": [
+    "jQuery",
+    "css",
+    "style",
+    "copy"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "827cc865eb",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "827cc865ebe484e19fe6d4b372ed7149f5bb13a9"
+  },
+  "_source": "https://github.com/moagrius/copycss.git",
+  "_target": "*",
+  "_originalSource": "copycss",
+  "_direct": true
+}

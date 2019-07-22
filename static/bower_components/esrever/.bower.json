@@ -1,0 +1,28 @@
+{
+  "name": "esrever",
+  "version": "0.2.0",
+  "main": "esrever.js",
+  "ignore": [
+    "bin",
+    "coverage",
+    "man",
+    "src",
+    "tests",
+    ".*",
+    "component.json",
+    "Gruntfile.js",
+    "node_modules",
+    "package.json"
+  ],
+  "homepage": "https://github.com/mathiasbynens/esrever",
+  "_release": "0.2.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.2.0",
+    "commit": "7554f6b1cb1e84e52f60365f78c6145949464703"
+  },
+  "_source": "https://github.com/mathiasbynens/esrever.git",
+  "_target": "^0.2.0",
+  "_originalSource": "esrever",
+  "_direct": true
+}

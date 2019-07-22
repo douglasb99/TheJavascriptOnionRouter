@@ -1,0 +1,17 @@
+#count_down span { display: block; float: left; width: 34px; height: 50px; 
+    background: url(../bower_components/jquery.countdown.package-2.0.2/countdownGlowing.gif) no-repeat 0px 0px; } 
+
+// i think this refers to cuttimg up original gif
+ #count_down span.image0 { background-position: -0px 0px; } 
+#count_down span.image1 { background-position: -34px 0px; } 
+#count_down span.image2 { background-position: -68px 0px; } 
+#count_down span.image3 { background-position: -102px 0px; } 
+#count_down span.image4 { background-position: -136px 0px; } 
+#count_down span.image5 { background-position: -170px 0px; } 
+#count_down span.image6 { background-position: -204px 0px; } 
+#count_down span.image7 { background-position: -238px 0px; } 
+#count_down span.image8 { background-position: -272px 0px; } 
+#count_down span.image9 { background-position: -306px 0px; } 
+#count_down span.imageDay { background-position: -340px 0px; } 
+#count_down span.imageSep { background-position: -374px 0px; } 
+#count_down span.imageSpace { background-position: -408px 0px; } 

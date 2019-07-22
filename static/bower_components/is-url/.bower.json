@@ -1,0 +1,15 @@
+{
+  "name": "is-url",
+  "homepage": "https://github.com/sindresorhus/is-url-superb",
+  "version": "2.0.0",
+  "_release": "2.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.0.0",
+    "commit": "ecb49883b52bce654e8f3565ca8ce414680cbd8d"
+  },
+  "_source": "https://github.com/sindresorhus/is-url-superb.git",
+  "_target": "^2.0.0",
+  "_originalSource": "is-url",
+  "_direct": true
+}

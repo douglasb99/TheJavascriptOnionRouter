@@ -1,0 +1,1566 @@
+<html>
+<head>  
+        <title>JOR</title>
+    <style>   
+        
+        #galleries {
+         visibility: hidden;   
+        }
+        
+        #IntroductionModal {
+          visibility: hidden;   
+        }
+       
+        #galleryHolder {
+            visibility: hidden;   
+            padding-top: 10px; 
+            margin-top: 5px; 
+            margin-left: 5px;
+            clear: both;
+            display: block;
+        }
+
+.pipe {
+  padding-left: 25px; 
+}
+
+div#menu3 li {
+     text-align: right; 
+    display:inline-block;
+    margin: 1px 10px 5px 10px;  
+     font-size: .75em; 
+}
+
+div#menu3 ul {
+    display: inline;
+    width: 25%;
+}
+
+#fiveMinutes {
+    display:inline-block;
+    margin: 1px 10px 20px 10px;   
+    float: right;
+    font-size: .75em; 
+
+}
+
+#count_down {
+    padding-left: 5px;
+}
+
+#lessThanFive {
+    visibility: hidden;
+}
+
+
+#sendform {
+            clear: left;
+            float: left; 
+            padding-top: 5px; 
+        }
+        
+        h1 {
+            margin-left: 10px;
+            float: left;
+        }
+        .countin {    
+            display: block;
+        }
+        
+        .countin ul {
+            font-size: 10px;
+        }
+        
+       .randLoadingGif {
+  width: 90px;
+  height: auto;
+}      
+
+#soonLeaving {
+    margin-top: 5px; 
+    margin-right: 15px;
+    float: right;
+    font-size: .8em;
+}
+        
+        
+.tooltip-inner {
+    white-space:pre-wrap;
+} 
+
+.topnav {
+  overflow: hidden;
+  background-color: #4e5359;
+}
+
+.topnav {
+   clear: both;
+   width: 100%;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+#inactiveLink {
+   font-size: 1.2em;
+   pointer-events: none;
+   cursor: default;
+}
+
+#specialGlowHover {
+      -webkit-stroke-width: 5.3px;
+      -webkit-stroke-color: #FFFFFF;
+      -webkit-fill-color: #FFFFFF;
+      text-shadow: 1px 0px 20px black;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+  text-decoration: none;
+}
+
+.cd-faq-categories a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4e5359;
+  color: white;
+}     
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#loading {
+    padding-left: 20px;
+}
+
+#cannotViolateSameOriginPolicyErrorMessage {
+    clear: both;
+    display: block;
+}
+
+#captchaError {
+    color: red;
+}
+
+#log {
+    display:none; 
+}
+
+#keyLog {
+    display:none; 
+}
+
+
+</style>
+<script src='https://www.google.com/recaptcha/api.js?render=6LeU9XcUAAAAAB8moqVJndki35tdMRo9QMPY60gH'></script> 
+</head>
+<header>
+    
+          <div id="menu3">
+        <ul>      
+            <li> Pages (HTML): <span id = "htmlReceived">0</span>     <span class="pipe">&#124;</span></li>
+            <li> Images (Regular): <span id="imageReceived" >0</span>    <span class="pipe">&#124;</span> </li>
+            <li> Images (Background): <span id="backgroundReceived">0</span>     <span class="pipe">&#124;</span></li>
+            <li> CSS files: <span id="cssReceived">0</span> <span class="pipe">&#124;</span> </li> 
+            <li id="lessThanFive"> Please stay for at least FIVE minutes. Currently session is: 
+                <label id="minutesCounter">00</label>:<label id="secondsCounter">00</label></li>
+        </ul> 
+    </div>
+    
+    
+<div class="topnav">
+  <a href="#" id="specialGlowHover">Welcome to The Javascript Onion Router (JOR) !!!!!</a>
+  <a href="https://thejor.com/About.html">About</a>
+  <a href="https://thejor.com/scrambler/">Scrambler</a>
+  <a href="#">Jor</a>
+</div>    
+</header>
+
+<body>   
+       <form id="sendform" action="">
+        <input type="text" id="message">        
+        <button id="send">Enter URL... </button>
+       <span id ="holding"></span>      
+       <span id="connectingMessage">  connecting ..  </span>      
+  <img src =" ./css/gif-load.gif" id="loadingGif" alt="loading symbol">
+        <span class="inputError"></span>
+        </form>
+     <button id="soonLeaving" type="button" class="btn-secondary" data-toggle="tooltip"  title="This helps the p2p network run soothly! ">Click Here Before Closing The Page! </button>
+    <div id="count_down"></div>
+    <div id="log">important  logged messages </div>
+   <div id="keyLog">important  logged messages </div>   
+      <div id="htmlToDisplay" class="html"></div>
+      <div id="galleryHolder">
+    <button id="galleriesInput" type="button" name="SHOWGALLERY" class="btn-secondary" 
+            data-toggle="tooltip" value="ShowGallery" onclick="Gallery.makeGalleries()" 
+            data-placement="left" title="see all the pages images as gallery">see all the pages images as gallery</button>
+       </div> 
+   
+<iframe id="galleries" frameborder="0" srcdoc="<html><body><h3>main images</h3><div id='dataURIGal'></div><h3>background images</h3><div id='backgroundGal'></div><h3>css images</h3><div id='cssGal'></div></body></html>"    
+ style="display:block; position: absolute; clear: both; 
+  width: 100%;
+  height: 100%; 
+  resize: both;
+  overflow: auto;">
+</iframe>
+    
+    <iframe id="foo"  frameborder="0" srcdoc="<html><body></body></html>" 
+         style="overflow:hidden; 
+         display:block; position: absolute; clear: both; margin-top: 100px;  height: 100%; width: 100%;" >
+    </iframe>
+    
+    <div class="modal fade" id="IntroductionModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Introductory Message: Please Read</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>This new network is functionally highly experimental
+              but cryptographically secure. </p>
+           <p>All requests (including link clicks) are directed into the network. 
+               scripts are at this juncture disabled in the fetched content</p>
+           <p>HTTPS requests only. HTTP requests therefore swapped to HTTPS</p>
+           
+            <h5>Rules: </h5>
+           <ol>
+            <li>When leaving click the "soon leaving" button and wait for the five countdown before closing the page</li>
+            <li>Please stay on the Javascript Onion Router for at least five minutes. This helps the network to run smoothly.</li>
+            </ol>
+            <p>I'm IP blocking those acting weird, or not obeying these rules, programmatically.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+    <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+          <h4 class="modal-title">Enter Text To Start</h4>
+      </div>
+      <div class="modal-body">
+        <form id="captachaSVG" action="">
+          <strong></strong>
+          <span id="captcha"></span>
+        <input type="text" id="captchaText">        
+        <button id="sendSVG" class="btn btn-default">submit</button>
+        <br><span id="captchaError" ></span>      
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+  
+    <script>
+
+</script>
+    
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/socket.io-client/socket.io.js"></script>
+    <script src="bower_components/urijs/src/URI.js"></script>
+    <script src="bower_components/esrever/esrever.js"></script>
+    <script src="bower_components/simple-uuid/uuid.js"></script>
+    <script src="bower_components/immutable/dist/immutable.js"></script>
+    <script src="bower_components/taffydb/taffy.js"></script>
+    <script src="bower_components/js-sha256/src/sha256.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/DOMPurify/dist/purify.min.js"></script>
+    <script src="./bower_components/jquery.countdown.package-2.0.2/jquery.plugin.min.js"></script>
+    <script src="./bower_components/jquery.countdown.package-2.0.2/jquery.countdown.min.js"></script>
+    <script src="./bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="./bower_components/bootstrap/dist/js/bootstrap.bundle.min.js"></script> 
+    <script src="./bower_components/js-cookie/src/js.cookie.js"></script> 
+    <script src="other_components/DetectRTC.js"></script>
+    <script src="other_components/FileBufferReader.js"></script>
+    <script src="other_components/URLUtils.js"></script>
+    <script src="other_components/DisplayContent.js"></script>
+    <script src="other_components/messageHandler.js"></script>
+    <script src="other_components/curry.min.js"></script>
+    <script src="other_components/Queries.js"></script>
+    <script src="other_components/Utils.js"></script>
+    <script src="other_components/Parser.js"></script>
+    <script src="other_components/Requester.js"></script>
+    <script src="other_components/ExitNode.js"></script>
+    <script src="other_components/FileDisplay.js"></script>
+    <script src="./DataChannel.js"></script>
+    <script src="./Signalling.js"></script>
+    <script src="./P2PChannelNegotiation.js"></script>
+    <script src="./SelfP2PChannelNegotiation.js"></script>
+    <script src="./Closing.js"></script>
+    <script src="./SparePriority.js"></script>
+    <script src="./CloseTest.js"></script>
+    <script src="./ClosingDown.js"></script>
+    <script src="./watchPolyFill.js"></script>
+    <script src="./Meshing.js"></script>
+    <script src="./Cryptography.js"></script>
+    <script src="./CryptoMethods.js"></script>
+    <script src="./Hider.js"></script>
+    <script src="./RateLimiter.js"></script>
+     <script src="./Gallery.js"></script>
+    <script src="./DisplayStatus.js"></script>   
+    <script src="./Done.js"></script>
+    <script src="./CSSRequester.js"></script>    
+    <script src="other_components/component-domify/index.js"></script>    
+    <script src="other_components/Groups.js"></script>   
+    <script src="other_components/fileHelper.js"></script>   
+     <script src="other_components/cssParser/index.js"></script>
+     <script src="./browserifyRequires2.js"></script>    
+     <script src="./GroupsTester.js"></script>       
+    <script src="bower_components/justifiedGallery/dist/js/jquery.justifiedGallery.js"></script>
+    <link rel="stylesheet" href="bower_components/justifiedGallery/dist/css/justifiedGallery.css">
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css">     
+    <script  src="./Whitelisted.js"></script> 
+    <link rel="stylesheet" href="./css/countdown.css"> 
+    <link rel="stylesheet" href="./css/toolTips.css"> 
+    
+<script>
+"use strict";
+
+// This id is sent by clients to all other clients to stop clients trying to connect two clients together which are same. its sent as
+window.clientId = "cliii : " + UUID.generate();
+window.startedHidingAlgFlag = false;
+window.OURSITEURL = "";
+
+$(document).ready(function () {
+	if (!Utils.amIChrome()) return insertChromeErrorMessage();
+	$('#galleries').hide();
+	$('#galleryHolder').hide();
+
+	// for testing putting here 
+	var originalAlert = window.alert;
+	window.alert = function (message = "", show = false) {
+		console.error("alert called");
+
+		if (show === true) {
+			originalAlert(message);
+		}
+
+	};
+
+
+	Requester.TestIfWeCanViolateSameOriginPolicy(cannotViolateSameOriginPolicyErrorMessage, function () {
+		var UA = JSON.stringify(Array.from(navigator.plugins).map(p => p.name));
+		UA += "and window.chrome is : " + window.chrome + "CHROME VERSION : " + getChromeVersion();
+		UA += "  width:: " + $(window).width();
+
+		function getChromeVersion() {
+			var raw = navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
+			return raw ? parseInt(raw[2], 10) : false;
+		}
+
+		var iframe = document.getElementById('galleries');
+		var iframedoc = iframe.contentDocument || iframe.contentWindow.document;
+		DisplayContent.setIframeContentSecurityPolicy(iframedoc);
+
+		// Used only when testing: checks EAS keys are passed around correctly. 
+		$("#triggerKeyCheck").submit(function (event) {
+			event.preventDefault();
+			TestWhichChannelsHaveKeys();
+
+			function TestWhichChannelsHaveKeys() {
+				console.log("into TestWhichChannelsHaveKeys");
+				var RolesNotExpectingKeys = ["unusedSpare"];
+				var key;
+				var positionTesting;
+				for (var i = 0; i < window.DataChannels.length; i++) {
+					key = Groups.getAssociatedKey(window.DataChannels[i]['connectionId']);
+					positionTesting = Groups.getAssociatedPosition(window.DataChannels[i]['connectionId']);
+					if (RolesNotExpectingKeys.indexOf(window.DataChannels[i].role) == -1) {
+						// so i think we expect a key since its not in the roles not expecting key
+						console.assert(typeof key != null, "expecting a key");
+						console.assert(typeof key != "undefined", "expecting a key");
+
+						if (typeof key == null) {
+							console.error("expects a key");
+						}
+					}
+				}
+			}
+
+		});
+
+
+		// doesnt realy need to be as callback since hardly important if errror occur in failed clients we will reject
+		DetectRTC.load(function () {
+
+			// if datachannels not supported show error message
+			if (!DetectRTC.isSctpDataChannelsSupported) return insertErrorMessage();
+			//if(!Utils.amIChrome()) return insertChromeErrorMessage();
+			// create requests array namespace sta store each requests id, url made  
+			window.fetchesMade = [];
+			// array of pagedata recieved where reqID is object name and data within e.g. url, or image data
+			window.pagesRecieved = {};
+			// array of all loaded req ids. used to see if image is old ( will be discarded ) 
+			window.loadedreqIDs = [];
+			// queued images waiting for their page reqid = array (object extra, object extra, object extra)
+			window.queuedImages = {};
+			// when clicked to leave it is switched to true. 
+			window.SoonLeavingFlag = false;
+			// table representing signalling attempt
+			// with columns as role, connectionId, initiatorObjRef, recieverObfRef   
+			window.signallingInfo = TAFFY();
+			// for debugging, delete later
+			window.countingtestopen = 0;
+			// so this allows uus to run the hider algorithm only once and not twice since when we switch it off then
+			// the hider algorithm cannot be used to switch the pseudoexit. This  flag is checked in signaller 2 at the point where 
+			// we want to switch into it. 
+			// So we will store a connectionid from group, and then with it the flag which will only be set as true.  
+			window.HiderSwitchDoneFlags = {};
+			window.OFFERMESSAGES = [];
+			window.backgroundImagesTesting = [];
+			// contains hashes that are sent with some messages to 
+			// allow certain replies ie certain messages only evaluated when 
+			// sent by a peer who has resends the permissions key. saved when created in this taffy().
+			// used in closing
+			window.permissionKeysSent = TAFFY();
+			// storing which third edge has opened once, so that we do not try to do it again.
+			// not nice solution
+			window.OpenedThirdEdges = TAFFY();
+			// just for testing signalling and only uused in this file
+			window.testCounter = 0;
+			// stick strings in there
+			window.bufferedLogging = [];
+			// waiting spares waiting to be p2p connected up as spare route, waiting for the relay to establish 
+			window.waitingOpenSpares = TAFFY();
+			/* all our data channels will be held within d
+			 * array of objects. each object will contain keys and values and some 
+			 * and keys will include connectionId, edgeId, role ( options 'consumer', 'relay', 'relay3' )
+			 * edgeId will not be assigned in relay3 and consumer since they don't have one.
+			 * relay should keep 2 channels with same edgeId and pass data onto second channel from first 
+			 * dataChannel will hold datachannel instance
+			 */
+			window.DataChannels = [];
+			// socket.io library init for websockets.
+			var socket = io.connect({
+				'path': '/jor/socket.io'
+			});
+			// now socket is in window lets 
+			window.socket = socket;
+			window.IntroductionModal = false;
+			DisplayStatus.pageLoaderInfiniteLoop();
+			window.fileBufferReader = new FileBufferReader();
+			fileBufferReader.onEnd = function (file) {
+				if (file instanceof Blob) processRecievedFile(file);
+			};
+
+
+			socket.on('reconnect', (attemptNumber) => {
+				console.error("reconnect event called attempt number : " + attemptNumber);
+			});
+
+
+			var ConnectCalledOnceAlreadyFlag = false;
+			socket.on('connect', function () {
+				if (ConnectCalledOnceAlreadyFlag) {
+					return;
+				}
+				ConnectCalledOnceAlreadyFlag = true;
+				console.error(" connect called ");
+				grecaptcha.ready(function () {
+					// homepage or login are example types 
+					grecaptcha.execute('6LeU9XcUAAAAAB8moqVJndki35tdMRo9QMPY60gH', {
+							action: 'login'
+						})
+						.then(function (token) {
+							if (!Queries.amIConnectedConsumer()) {
+
+								var message = {};
+								message.token = token;
+								Done.getUserIP(IPCB);
+								console.error("message.token ::: " + message.token);
+
+								function IPCB(ip) {
+									// this replaces random and actually it should now call the random code below so it also functions as the random bit.   
+									message.done = ip;
+									socket.emit("recaptacha3", message);
+
+									console.error("userIP is ::: " + message.done);
+									console.count("and request_path called");
+								}
+							}
+							// Verify the token on the server.
+							console.error(" the token : " + token);
+							debugger;
+
+						});
+
+				});
+			});
+			/*
+			 *  Too many captcha attempts were failied.  
+			 */
+			socket.on('maxAttemptsExceededCaptchas', function (message) {
+				leaving(false);
+				$('#myModal').modal('hide');
+				alert("Maximum attempts at captcha exceeded", true);
+			});
+			/*
+			 *  Failed captcha due to bot detected. 
+			 */
+			socket.on('capatcha failed', function (message) {
+				leaving(false);
+				alert("bot deteched by automated system no longer may use. Come back later", true);
+
+			});
+
+			/*
+			 *  Recives the captcha from the server to display to the user. 
+			 */
+			socket.on('captchaSVG', function (message) {
+				var img = message.svg;
+				$('#myModal').modal('show');
+				$('#captcha').empty();
+				$("#captchaText").text();
+				if (message.errorFlag) {
+					$('#captchaError').text("Incorrect please retry.");
+				} else {
+					$('#captchaError').text("");
+				}
+				$('#captcha').prepend(img);
+
+
+			});
+
+			/*
+			 * success response from server of captcha. 
+			 */
+			socket.on('captchaSVGsuccess', function (message) {
+				$('#myModal').modal('hide');
+			});
+
+			/**
+			 * sends result of captcha to server for server-side validation
+			 */
+			$("#captachaSVG").submit(function (event) {
+				$('#captchaError').text("");
+				event.preventDefault();
+				console.log('request URI value is: ' + $("#captchaText").val());
+				var text = $("#captchaText").val();
+
+				if (typeof text !== "string" || text.length < 2 || text.length > 8) {
+					$('#captchaError').text("Incorrect please retry");
+					return;
+				}
+				$('#captcha').empty();
+				text = text.toUpperCase();
+				socket.emit('captchaText', text);
+			});
+
+			/*
+			 * In SDP answer/offer exchange this is recieved if the user is to create a new peerconnection but 
+			 * start as the offerere in handshake ie create offer and recieve SDP answer. This is sent to user to 
+			 * create a new peerconnection and ssocitaed metadata which we store in DCSO (datachannel storage object) with various
+			 * config data such as aes key associtaed, directionality(facing), edgeID, role of datachannel and connectionID.  
+			 */
+			socket.on('initiate', function (message) {
+				if (!window.IntroductionModal) {
+					showIntroductionModalOnceWithCookie();
+				}
+				if (message.role === "relay" && !message.hasOwnProperty("position")) {
+					console.error('all relays must hvae position property of value first or second');
+				}
+
+				if (message.role === "consumer") {
+					document.title = "CONSUMER";
+					console.log('%cconsumer ', 'background: #222; color: #bada55');
+				}
+
+				if (message.role === "pseudoExitSpare") {
+					document.title = "XXXpseudoExitSpare";
+					console.log('%cpseudoExitSpare ', 'background: #222; color: #bada55');
+				}
+
+
+				if (message.role === "pseudoExit") {
+					console.error("pseudoExit should be in recieve ");
+				}
+
+				if (message.role === "signaller") {
+					document.title = "SIGNALLER";
+					console.log('%csignaller ' + message.testingExtra, 'background: #222; color: #bada55');
+				}
+
+				if (message.hasOwnProperty('spareManTesting')) {
+					document.title = "S_PAREMAN";
+					console.log('%cspareMan', 'background: #222; color: #bada55');
+				}
+				var facing = (message.hasOwnProperty('facing')) ? message.facing : null;
+				var exitRolesTestArr = ['pseudoExit', 'sparePseudoExit', 'signallerPseudoExit'];
+				var DC = createNewDC(socket, message.connectionId, fileBufferReader, message.role, facing);
+				var edgeId = (message.hasOwnProperty('edgeId')) ? message.edgeId : null;
+				var position = (message.hasOwnProperty("position")) ? message.position : null;
+
+				// with other posotion is added from server BUT with pseudoexit we don't bother passing
+				// it from server we get it from the role. it is used by createdcsogroup to dave in groups posotion bit. 
+				if (exitRolesTestArr.indexOf(message.role) !== -1) {
+					position = "third";
+				}
+
+				if (typeof message.replacementConId !== "undefined") {
+					var dataChannelObj = Queries.replaceDCSO(message.replacementConId, DC, message.connectionId, message.role, edgeId, facing, position);
+				} else {
+					var dataChannelObj = Queries.createDCSO(DC, message.connectionId, message.role, edgeId, facing, position);
+					window.DataChannels.push(dataChannelObj);
+				}
+				var completeBF = complete.bind(null, message.connectionId);
+				dataChannelObj.dataChannel.addOnDCOpen(completeBF);
+
+				if (dataChannelObj.role === "pseudoExit") {
+					dataChannelObj['dataChannel'].addOnDCOpen(function () {});
+				}
+
+				var paramaters = new Array(socket, message.connectionId);
+				/*
+				 * function to be passed as callback to send offer when created by initiate
+				 * 
+				 * @param {String} the SDP offer created
+				 * @param {Array} anonomous array containing socket object as sole value
+				 * @returns {void}
+				 */
+				function sendOffer(paramaters, offer, self) {
+					console.assert(paramaters[1] === self.connectionId, ' sendoffercb self conid ' + self.connectionId + 'bound : ' + paramaters[1]);
+					var message = {};
+					message.offer = offer;
+					message['connectionId'] = paramaters[1];
+					message.clientId = window.clientId;
+					var socket = paramaters[0];
+					socket.emit('offer', message);
+				};
+
+				var sendOfferCallback = sendOffer.bind(null, paramaters);
+
+				if (typeof message.replacementConId !== "undefined") {
+					alert("replacement channel");
+
+				} else if (message.role === "consumer") {
+					addConsumerKeysToDCSO(dataChannelObj, message.key1, message.key2, message.key3);
+					console.assert(message.hasOwnProperty("key1"), "consumer must have the this key ( and should have k2 and k3)");
+
+
+				} else if (message.hasOwnProperty("AESKey")) {
+					Groups.associateKey(dataChannelObj.connectionId, message.AESKey, "line 523 client.ejs");
+				}
+
+				DC.initiate(sendOfferCallback);
+
+				if (typeof message.extraTestParam !== "undefined") {
+					console.count("replacement");
+					if (message.extraTestParam === "wassup") {
+						document.title = "GGGGG";
+					}
+				}
+
+
+			});
+
+			/*
+			 * In SDP answer/offer exchange this is recieved if the user is to create a new peerconnection but 
+			 * start as the reciever in handshake ie not create offer. 
+			 * 
+			 * This is sent to user to 
+			 * create a new peerconnection and ssocitaed metadata which we store in DCSO (datachannel storage object) with various
+			 * config data such as aes key associtaed, directionality(facing), edgeID and connectionID.  It is the same as initiate 
+			 * other than in which role is taken in the SDP protocol. 
+			 */
+			socket.on('recieve', function (message) {
+				try {
+					var a = socket.client.conn.remoteAddress;
+					console.error(" a is : " + a);
+					var b = socket.request.connection.remoteAddress;
+					console.error(" b is : " + b);
+					var c = socket.handshake.address;
+					console.error(" c is : " + c);
+				} catch (e) {
+					console.error("caught error : " + e);
+				}
+				if (!window.IntroductionModal) {
+					showIntroductionModalOnceWithCookie();
+				}
+
+				console.log(" new dc elected to recieve " + JSON.stringify(message));
+				console.log('role ' + message.role + ' connection id ' + message.connectionId + ' edge id ' + message.edgeId);
+
+				// testing
+				if (message.role === "relay" && !message.hasOwnProperty("position")) {
+					debugger;
+					console.error('all relays must hvae position property of value first or second');
+				}
+
+				if (message.role === "consumer") {
+					document.title = "CONSUMER";
+					console.log('%cconsumer ', 'background: #222; color: #bada55');
+				}
+
+				if (message.role === "signaller") {
+					if (message.testingExtra == 2) {
+
+					}
+					console.log('%csignaller' + message.testingExtra, 'background: #222; color: #bada55');
+				}
+
+				if (message.role === "pseudoExitSpare") {
+					document.title = "XXXpseudoExitSpare";
+					console.log('%cpseudoExitSpare ', 'background: #222; color: #bada55');
+				}
+
+				if (message.role === "pseudoExit") {
+					document.title = "PSEUDOEXIT";
+					console.log('%cpseudoExit ', 'background: #222; color: #bada55');
+				}
+
+				if (message.hasOwnProperty('spareManTesting')) {
+					document.title = "S_PAREMAN";
+					console.log('%cspareMan', 'background: #222; color: #bada55');
+				}
+
+				if (message.hasOwnProperty('nextP2PNode')) {
+					document.title = "NEXTP2PNODE";
+					console.log('%cnextP2pNode', 'background: #222; color: #bada55');
+				}
+
+
+				// only can be sent to reciever from logic in server
+				if (message.hasOwnProperty('testingValForRole')) {
+					if (message.extraSpareNumber === 1) console.info('%cspareManTheSecond ', 'background: #222; color: #bada55');
+					console.log("extraSpare : " + message.extraSpareNumber, 'background: #222; color: #bada55');
+				}
+
+				var facing = (message.hasOwnProperty('facing')) ? message.facing : null;
+				var exitRolesTestArr = ['pseudoExit', 'sparePseudoExit', 'signallerPseudoExit'];
+				var DC = createNewDC(socket, message.connectionId, fileBufferReader, message.role, facing);
+				var edgeId = (message.hasOwnProperty('edgeId')) ? message.edgeId : null;
+				var position = (message.hasOwnProperty("position")) ? message.position : null;
+				if (exitRolesTestArr.indexOf(message.role) !== -1) {
+					position = "third";
+				}
+				if (typeof message.replacementConId !== "undefined") {
+					alert("in recieve with replacement");
+					var dataChannelObj = Queries.replaceDCSO(message.replacementConId, DC, message.connectionId, message.role, edgeId, facing, position);
+				} else {
+					var dataChannelObj = Queries.createDCSO(DC, message.connectionId, message.role, edgeId, facing, position);
+					window.DataChannels.push(dataChannelObj);
+
+				}
+
+				var completeBF = complete.bind(null, message.connectionId);
+				dataChannelObj.dataChannel.addOnDCOpen(completeBF);
+				if (dataChannelObj.role === "pseudoExit") {
+					dataChannelObj['dataChannel'].addOnDCOpen(function () {
+						console.error("NOT ERROR BUT OPENING PSEUDO!!!");
+					});
+				}
+
+				if (typeof message.replacementConId !== "undefined") {} else if (message.role === "consumer") {
+					addConsumerKeysToDCSO(dataChannelObj, message.key1, message.key2, message.key3);
+				} else if (message.hasOwnProperty("AESKey")) {
+					Groups.associateKey(dataChannelObj.connectionId, message.AESKey, "line 643 in client.ejs");
+				}
+			});
+
+/**
+ * We show a modal once to the user with basic explanation of how the site works the first time they use the site. 
+ */
+			function showIntroductionModalOnceWithCookie() {
+				// surely if we are using cookies then we do not even 
+				// unless they block cookies at least they get it once per use. 
+                                return; 
+                                /**THIS STARTED FUCKING UP WITH THE MODAL ONLY HALF DISPLAYING AND
+                                 * FREEZING THE SCREEN AFTER CHROME UPDATES SO DISABLED AT THE MOMENT
+                                */
+				window.IntroductionModal = true;
+				var cookVal = Cookies.get('showIntroductionModal');
+				if (cookVal == "true") {
+					return;
+				} else {
+					Cookies.set('showIntroductionModal', 'true');
+					$('#IntroductionModal').modal('show');
+				}
+			}
+
+			/*
+			 * Called with partners offer in json data.
+			 * Server forwards sdp offer to here. 
+			 */
+			socket.on('offer', function (message) {
+				var DC = Queries.fetchDCByConnectionId(message.connectionId);
+				window.OFFERMESSAGES.push(message);
+				var params = new Array(socket, message.connectionId);
+
+				function sendAnswer(params, answer, self) {
+					console.assert(params[1] === self.connectionId, ' sendAnswerrcb self conid ' + self.connectionId + 'bound : ' + params[1]);
+					message.answer = answer;
+					message.connectionId = params[1];
+					message.clientId = window.clientId;
+					var socket = params[0];
+					socket.emit('answer', message);
+				};
+				var bf = sendAnswer.bind(null, params);
+				console.assert(window.clientId !== message.clientId, "scope test !!!");
+				DC.offer(message.offer, message.clientId, bf);
+				var DCStorageObject = Queries.fetchDCSOByConnectionId(message.connectionId);
+			});
+
+			/*
+			 * called with partners SDP Answer
+			 */
+			socket.on('answer', function (message) {
+				var DC = Queries.fetchDCByConnectionId(message.connectionId);
+				var answer = message.answer;
+				DC.answer(answer, message.clientId);
+			});
+
+			socket.on('queued', function (totalNumberOfQueuedSockets) {
+				DisplayStatus.hideTheUrlBoxShowTheyAreQueued(totalNumberOfQueuedSockets);
+			});
+
+			/*
+			 * called with content html/css
+			 * in scrambler. It is not used when the exit nodes themselves fetch data. 
+			 */
+			socket.on('content', function (message) {
+				var DCSO = Queries.fetchDCSOByPseudoExitIdAndRole(message.pseudoExitId, 'pseudoExit');
+				var keyHex = Groups.getAssociatedKey(DCSO.connectionId);
+				var contentConstatenated = Cryptography.concatFNAndStrn(message.url, "html", message.reqID, message.content);
+				var FlagIfItIsString = true;
+				Cryptography.encrypt(contentConstatenated, cbContent, keyHex, FlagIfItIsString);
+
+				function cbContent(blob) {
+					var file = new File([blob], "message.url");
+					var getNextChunkCallbackBF = getNextChunkCallback.bind(null, DCSO.dataChannel);
+					console.assert(DCSO.dataChannel instanceof DataChannel, "socket.on.content and fetchbypseudoexit didnt return datachannel");
+					var extra = {
+						chunkSize: 13 * 1000
+					};
+					fileBufferReader.readAsArrayBuffer(file, function (uuid) {
+						fileBufferReader.getNextChunk(uuid, getNextChunkCallbackBF);
+					}, extra);
+
+				};
+			});
+
+			/*
+			 * called when image is sent by server as in scrambler. 
+			 * 
+			 */
+			socket.on('image', function (message) {
+				var DCSO = Queries.fetchDCSOByPseudoExitIdAndRole(message.pseudoExitId, 'pseudoExit');
+				printImageTestMethod(message.buffer);
+
+				var keyHex = Groups.getAssociatedKey(DCSO.connectionId);
+				console.assert(typeof message.url === "undefined", "cannot see where sent from server !!!! ");
+
+				var urlParam = (typeof message.url === "undefined") ? null : message.url;
+				var contentConstatenated = Cryptography.concatFNAndStrn(urlParam, "dataURL", message.reqID, message.buffer, message.data);
+				var FlagIfItIsString = true;
+				Cryptography.encrypt(contentConstatenated, cbImage, keyHex, FlagIfItIsString);
+
+				/*CB to be executed after async encryption operation. 
+				 * It sends the image as array buffer. 
+				 */
+				function cbImage(blob) {
+					var file = new File([blob], "image.url");
+					var extra = {
+						chunkSize: 13 * 1000
+					};
+					console.assert(DCSO.dataChannel instanceof DataChannel, "socket.on.image and fetchbypseudoexit didnt return datachannel");
+					var getNextChunkCallbackBF = getNextChunkCallback.bind(null, DCSO.dataChannel);
+
+					fileBufferReader.readAsArrayBuffer(file, function (uuid) {
+						fileBufferReader.getNextChunk(uuid, getNextChunkCallbackBF);
+					}, extra);
+				}
+			});
+
+			/*
+			 * Server forwarded ICE candidate with connectionId of associated connection. 
+			 */
+
+			socket.on('candidate', function (message) {
+				var DC = Queries.fetchDCByConnectionId(message.connectionId);
+
+				if (typeof DC === null || typeof DC == "undefined") {
+					console.error("with coniD :  " + message.connectionId + " didnt find any channel. ");
+				}
+
+				DC.addICECandidate(message.candidate, message.connectionId);
+			});
+
+			/*
+			 * The main submission of URI to fetch. 
+			 * 
+			 * it calls complete url to complete incomplete urls
+			 * it checks if the url is valid
+			 * it sends message along Datachannel. 
+			 */
+			$("#sendform").submit(function (event) {
+				$(".inputError").html("");
+				Gallery.deleteNHideGalleries();
+				DisplayContent.emptyMainIframe();
+				event.preventDefault();
+				console.log('request URI value is: ' + $("#message").val());
+				var url = $("#message").val();
+				var urlCorrected = URLUtils.CompleteUrl(url);
+				console.log(' and after completeUrl URI value is : ' + urlCorrected);
+
+				if (!URLUtils.isURL(urlCorrected)) {
+					var errorMessage = url + " is not a valid url. Please correct it and try again";
+					$(".inputError").html(errorMessage);
+					return;
+				}
+
+				urlCorrected = URLUtils.switchProtocolOfValidURLWithProtocoltoHTTPS(urlCorrected);
+				DisplayContent.insertRandomLoadingGifInIframe(urlCorrected);
+				var DCSO = Queries.fetchConsumerDCSO();
+				var keys = DCSO.consumerKeys;
+				// return the fixed url to the box
+				$("#message").val(urlCorrected);
+				TempFreezeurlBox();
+				//keys, i, successCB, urlAsString
+				CryptoMethods.ConsumerEncryptMultipleeURL(keys, 2, cbx, urlCorrected);
+
+				/**
+				 * callback executed after encryption which sends encrypted data down datachannel. 
+				 */
+				function cbx(encryptedURL) {
+					DCSO.dataChannel.send(JSON.stringify({
+						id: 'url',
+						url: encryptedURL
+					}));
+				};
+			});
+
+			/**
+                         * We temporarily freeze the box where users can make requests after request to stop them 
+                         * clicking it constantly and keeping many many requests or making a second within 10 seconds. 
+                         */ 
+			function TempFreezeurlBox() {
+
+				fetchingHideTheURLBox();
+				setTimeout(function () {
+					// window.requestInLastTenSeconds = false;
+					showTheURLBox();
+				}, 10000);
+
+			}
+
+                      /**
+                      * After the page is ready we show the request box to make uri requests and hide any loading modal. 
+                     */
+			function showTheURLBox() {
+				document.getElementById("send").disabled = false;
+				$("#loadingGif").remove();
+				$("#connectingMessage").text("I may be used");
+			}
+
+
+                      /**
+                      * When a request is being made we disable the request box. 
+                     */
+			function fetchingHideTheURLBox() {
+				document.getElementById("send").disabled = true;
+				$("#loadingGif").remove();
+				$("#connectingMessage").text("");
+			}
+
+
+			$("#soonLeaving").click(function (event) {
+				if (!DisplayStatus.HaveWeBeenConnectedFiveMinutes()) {
+					if (DisplayStatus.getStartedNetworkVariableFlag()) {
+						var seconds = DisplayStatus.HowLongUntilStayedFiveMinutes();
+						var res = confirm("To help network run smootthly please wait another : " + seconds + " then try again");
+
+						if (!res) {
+							var soon = true;
+							var leavingTooEarlyFlag = true
+							leaving(soon, leavingTooEarlyFlag);
+						}
+						return;
+					}
+				}
+
+				var soon = true;
+				leaving(soon);
+			});
+
+/**
+* we penalize users who stay less than 5 minutes and who do not say before they leave that they are going to leave ( to give time
+* for their partners to reroute gracefully arounfd them. This is because webrtc datachannels have a delay from a channel closing to 
+* the other side of the channel being awre and can cause packet loss, and if too many leave at the same time the algorithm can fail. 
+*/
+			window.onunload = function () {
+				leaving(false);
+				debugger; // check when run with still hidden fields. 
+				if (!DisplayStatus.HaveWeBeenConnectedFiveMinutes()) {
+					if (DisplayStatus.getStartedNetworkVariableFlag()) {
+						socket.emit("lessThan5Mins");
+					}
+				}
+
+			}
+
+
+			/**
+			 * Called when user leaves to check if they have given notice.
+			 * The soon flag indictes if they are leaving soon or now. 
+			 */
+			function leaving(soon, leavingTooEarlyFlag = false) {
+				if (window.SoonLeavingFlag && soon) {
+					// the double click; 
+					return;
+				} else if (!soon && window.SoonLeavingFlag) {
+					// so they are leaving correctly we don't want it called twice
+					var timestmp = new Date().getTime();
+					console.assert(typeof window.SoonLeavingTimestamp !== "undefined");
+					var tsand2 = window.SoonLeavingTimestamp + 2000;
+					if (timestmp > tsand2) {
+						// it is more than 2 seconds
+						Queries.closeAllChannels();
+					}
+				}
+
+				if (!window.SoonLeavingFlag && soon) {
+					Queries.removeAllOncloseEventsOnSelfConnectedChannels();
+					Queries.sendSoonLeavingMessageToAllConnectedDatachannels();
+					// this flag is set if we are soon to leave and affects if and how we call the different algorithms ie we try to reject
+					// incoming calls in hider and possibly in future elsewhere
+					window.SoonLeavingFlag = true;
+					window.SoonLeavingTimestamp = new Date().getTime();
+				}
+				var timeTowaitToDisconnect = 5;
+
+				if (soon) {
+					var ts = Math.round((new Date()).getTime());
+					window.socket.emit('soonLeaving', ts);
+					var CBbf = calbck.bind(null, leavingTooEarlyFlag);
+					start_count_down(5, CBbf);
+				}
+
+				function calbck(leavingTooEarlyFlag) {
+					// currently at this stage we merely get rid of consumer channel to get them to leave
+					//  this closes them without them calling the onclose events and tbh that is the safest way BUT If closing then 
+					// the onclose events won't be triggered anyway.'
+					Queries.closeAllChannels();
+
+					if (leavingTooEarlyFlag) {
+						alert("Next time please stay for 5 minutes as it makes the network run better!", true);
+					} else {
+						alert("counted Down you may now gracefully leave", true);
+					}
+				}
+
+
+			}
+
+			window.addEventListener('beforeunload', function () {
+				window.socket.disconnect();
+			});
+
+
+			/*
+			 * when testing it is allowed a manual test of the connection. 
+			 */
+			$("#checkConnection").click(function (event) {
+				console.log("check connections clicked");
+				var DC = Queries.fetchDCByRole('consumer');
+				var DCSO = Queries.fetchDCSOByDC(DC);
+				CloseTest.checkConnection(DCSO);
+			});
+
+
+			/*
+			 * when testing it is allowed a manual reconnect if connection lost. 
+			 */
+			$("#reConnect").click(function (event) {
+				console.log("reConnect clicked");
+				// not if amIconnectedConsumer but if existant at all lets change it
+				// even if connecting state ect
+				var consumerDC = Queries.fetchDCByRole('consumer');
+
+				var consumerDCSO = Queries.fetchDCSOByDC(consumerDC);
+
+				if (typeof consumerDCSO !== "undefined") {
+
+					var readyState = consumerDCSO.dataChannel.getReadyState();
+
+					if (readyState == 'open') {
+						ClosingDown.closeSelfConsumer();
+					} else {
+						// if its null ( ie maybe not yet even datachannel just being created,
+						// or if still connecting lets make sure it shuts itself when it opens so we don't get 
+						// multiple consumers
+						consumerDCSO.dataChannel.addOnDCOpen(function () {
+							console.log("will this ever fire");
+							ClosingDown.closeSelfConsumer(self.connectionId);
+							var DCSO = Queries.fetchDCSOByConnectionId(self.connectionId);
+							Queries.closeDCSO(DCSO);
+						});
+					}
+				}
+				var reconnectFlag = true;
+				console.log('sent request_path with reconnectFlag : ' + true);
+				window.socket.emit('request_path', reconnectFlag);
+				// now lets reconnect now its shut and see if it works.      
+			});
+
+
+			/*
+			 * Method instantiates new data channel and ensures datachannel object is instantiated correctly
+			 * one should always instantiate new datachannel object using this method
+			 *  
+			 *  filebuffer reader global so have to be passed it as reminder
+			 *  
+			 * @returns {Object} returns an instance of datachannel object
+			 */
+			function createNewDC(socket, connectionId, fileBufferReader, role, facing) {
+
+				//console.assert(arguments.length === 6, "needs 6 args in createNewDC");
+				var params = new Array(socket, connectionId);
+
+				function sendIceCandidate(params, candidate, self) {
+
+					if (candidate == null) {
+						console.error(" created null candidate");
+						message.connectionId = params[1];
+						message.candidate = candidate;
+					}
+
+					console.log('sending candidate with params of length ' + params.length);
+					console.assert(params[1] === self.connectionId, ' sendICECANDcb self conid ' + self.connectionId + 'bound : ' + params[1]);
+					var message = {};
+					message.connectionId = params[1];
+					message.candidate = candidate;
+					var socket = params[0];
+					socket.emit('candidate', message);
+				};
+
+				// all bound functions have BF in variable name    
+				var IceCandidateCBBF = sendIceCandidate.bind(null, params);
+
+				var DC = new DataChannel(IceCandidateCBBF, fileBufferReader, socket, connectionId, role);
+
+				if (role === 'signaller' || role === 'relay') DC.addOnDCOpen(signallerRelayOnOpenSignaller);
+				else if (role === "signallerPseudoExit" || role === "pseudoExit") DC.addOnDCOpen(pseudoExitOnopenSignaller);
+				else {
+					// this else just for inspecting
+					DC.addOnDCOpen(
+						function () {
+							console.log('COMREADY default conId ' + this.self.connectionId);
+							console.count('COMREADY');
+							var DCSOqForTesting = Queries.fetchDCSOByConnectionId(this.self.connectionId);
+						});
+
+				}
+
+				if (role === "relay" || role === 'consumer') {
+					// consumer doesnt have a facing property 
+					if (facing === "consumer" || role === "consumer") {
+						DC.addOnClose(Closing.startReroutingAlgorithm);
+						console.count('Closing.startReroutingAlgorithm');
+					}
+				}
+
+				if (role === 'pseudoExit') {
+
+					DC.addOnClose(Closing.startReroutingAlgorithm);
+					console.count('Closing.startReroutingAlgorithm');
+				}
+
+				// eventually will go back to this
+				if (role === "spare" || role === "P2PSpare" || role === "signallerPseudoExit") {
+					//if(role === "P2PSpare"){
+					console.count('Closing.requestNewSpare');
+					DC.addOnClose(Closing.requestNewSpare);
+				}
+
+				return DC;
+			};
+
+			/**
+			 * When the pseudoexit ( which is the name given to the last node in 
+			 * onion route ) opens this then is called and spares for itself, including sharing 
+			 * the keys with them. 
+			 */
+			function pseudoExitOnopenSignaller() {
+				var DCSOmForTesting = Queries.fetchDCSOByConnectionId(this.self.connectionId);
+				var DCSO = Queries.fetchDCSOByConnectionId(self.connectionId);
+				if (Queries.partnerEdgesBothOpen(self.connectionId, true)) {
+					var edgeId = DCSO.edgeId;
+					var firstTime = window.OpenedThirdEdges({
+						edgeId: {
+							is: edgeId
+						}
+					}).count();
+					if (firstTime !== 0) return;
+					console.log('PSEUDOEXIT CREATING NEW CONNECTIONS!!!!!');
+					// this is wrong. seriously wrong. it needs subsituting for something better like now
+					// its a bug of logic. actually maybe its ok. 
+					window.OpenedThirdEdges.insert({
+						"edgeId": DCSO.edgeId
+					});
+					var otherEdgeDCSOs = Queries.getBothMatchingEdgesDCSO(DCSO);
+					var sortedDCSOs = Signalling.sortDCSOs(otherEdgeDCSOs[0], otherEdgeDCSOs[1], DCSO);
+					Signalling.pseudoConnect(sortedDCSOs[0], sortedDCSOs[1]);
+					Signalling.pseudoConnect(sortedDCSOs[0], sortedDCSOs[2]);
+					Groups.linkThreeUnknowns(otherEdgeDCSOs[0].connectionId, otherEdgeDCSOs[1].connectionId, DCSO.connectionId);
+				}
+			};
+
+
+			// signaller relay is to biuld bridges a along relay
+			// copied in selP2pchannelnegotiateion
+			function signallerRelayOnOpenSignaller() {
+				var DCSOwForTesting = Queries.fetchDCSOByConnectionId(this.self.connectionId);
+				var DCSO = Queries.fetchDCSOByConnectionId(this.self.connectionId);
+				window.testCounter++;
+				if (DCSO.role === "relay") {
+					if (!Queries.isPartnerRelayOpen(DCSO)) return;
+					var matchingEdgeRelayDCSO = Queries.fetchMatchingEdgeDCSOByDCSOWithRole(DCSO, "relay");
+					var edgeId = DCSO.edgeId;
+					var waitingCount = window.waitingOpenSpares({
+						edgeId: {
+							is: edgeId
+						}
+					}).count();
+					var waiting2 = window.waitingOpenSpares({
+						edgeId: {
+							is: edgeId
+						}
+					}).get();
+					var waiting = window.waitingOpenSpares({
+						edgeId: {
+							is: edgeId
+						}
+					}).first();
+
+					if (waitingCount === 0) return;
+					window.waitingOpenSpares({
+						edgeId: {
+							is: edgeId
+						}
+					}).remove();
+					var waitingConId = waiting2[0].connectionId;
+					var spareDCSO = Queries.fetchDCSOByConnectionId(waitingConId);
+					Groups.linkThreeUnknowns(spareDCSO.connectionId, matchingEdgeRelayDCSO.connectionId, DCSO.connectionId);
+					Signalling.connect(spareDCSO, matchingEdgeRelayDCSO, DCSO);
+
+					if (waitingCount === 1) return;
+					// can only get to here is there are two waiting spares, and thats what its for ie if bigger
+					// actual topology!!!
+					var waitingConId = waiting2[1].connectionId;
+					var spareDCSO = Queries.fetchDCSOByConnectionId(waitingConId);
+					Groups.linkThreeUnknowns(spareDCSO.connectionId, matchingEdgeRelayDCSO.connectionId, DCSO.connectionId);
+					Signalling.connect(spareDCSO, matchingEdgeRelayDCSO, DCSO);
+				}
+
+				// if signaller we check if both edges are open 
+				if (DCSO.role === "signaller") {
+					console.count("leCount");
+					if (!Queries.relayEdgesBothOpen(DCSO.edgeId)) {
+
+						window.waitingOpenSpares.insert({
+							"edgeId": DCSO.edgeId,
+							"role": DCSO.role,
+							"connectionId": this.self.connectionId
+						});
+
+						return;
+
+					}
+					var edges = Queries.getBothMatchingEdgesDCSO(DCSO, false, "relay");
+					Groups.linkThreeUnknowns(DCSO.connectionId, edges[0].connectionId, edges[1].connectionId);
+					Signalling.connect(DCSO, edges[0], edges[1]);
+				}
+			};
+
+			/*
+			 * This is used to send an individual chunk of the chunkified data down the datachannel. It is attatched as a callback. 
+			 */
+			function getNextChunkCallback(DC, nextChunk, isLastChunk) {
+				console.assert(DC instanceof DataChannel, 'in getNextChunkCallback DC is not datachannel');
+				console.assert(typeof (isLastChunk) === "boolean", 'expected islastchunk to be boolean');
+
+				if (isLastChunk) console.log('we sent it ');
+				console.log(' this get nextchunk callback called');
+				DC.send(nextChunk);
+			};
+
+			/*
+			 * calls method to process file based on type either as html or datauri. allows for more file types soon
+			 * to be added. 
+			 *
+			 * THIS DECIDES IF WE PASS ON FILE< AND IF SO IT ENCRYPTS IT WITH KEY
+			 *   
+			 * @param {type} dataURI
+			 * @returns {Blob}
+			 */
+
+			function processRecievedFile(file) {
+				var DCStorageObject = Queries.fetchDCSOByConnectionId(file.extra.connectionId);
+				console.assert(file.extra.uuid === file.uuid, "was hoping these would be the same");
+				var theUUID = file.uuid;
+				console.assert(file.hasOwnProperty("extra"), ' doesnt have any extra parameter in process recieved file');
+
+				if (DCStorageObject.role === "relay") {
+					var otherEdgeDCSO = Queries.fetchMatchingEdgeDCSOByDCSO(DCStorageObject);
+					// only thing is that we need to strip extra data from file. 
+					relayFile(file, otherEdgeDCSO['dataChannel']);
+					return;
+				}
+
+				if (DCStorageObject.role === "P2PSpare") {
+					var otherEdgeDCSO = Queries.fetchMatchingEdgeDCSOByDCSOWithRole(DCStorageObject, "P2PSpare");
+					// only thing is that we need to strip extra data from file. 
+					relayFile(file, otherEdgeDCSO['dataChannel']);
+					return;
+				}
+
+
+				if (DCStorageObject.role != "consumer") return;
+
+				var consumersKeys = DCStorageObject.consumerKeys;
+				CryptoMethods.ConsumerMultipleeDecryptBlobToBlob(consumersKeys, 0, extracateCB, file);
+
+				function extracateCB(blob) {
+					Cryptography.extracateFNFFROMBLOB(blob, DecryptedFileCB);
+				}
+
+				function printImageTestMethod(imageBuffer, dataAttribute) {
+					var img = $('<img id="dynamicA">');
+
+					imageBuffer = imageBuffer.replace(/(\r\n|\n|\r)/gm, "");
+					img.attr('src', imageBuffer);
+					img.attr('alt', dataAttribute);
+					img.appendTo('.test');
+				}
+
+				function DecryptedFileCB(extraDataExtracted) {
+					switch (extraDataExtracted.contentType) {
+						case "html":
+							DisplayContent.processInsertHTMLIframe(extraDataExtracted.content, extraDataExtracted);
+							FileDisplay.onEnd("#htmlReceived");
+							break;
+						case "dataURL":
+							console.info("delete when displayed therefore reached");
+							Whitelisted.processInsertDataURLAmmended(extraDataExtracted.content, extraDataExtracted.imageData, extraDataExtracted.reqID);
+							Gallery.addImageToGallery(extraDataExtracted.content, "dataURIGal", extraDataExtracted.extraText);
+							FileDisplay.onEnd("#imageReceived");
+							break;
+						case "background":
+
+							Whitelisted.processInsertBackgroundImage(extraDataExtracted.content, extraDataExtracted.imageData, extraDataExtracted.reqID);
+							Gallery.addImageToGallery(extraDataExtracted.content, "backgroundGal", extraDataExtracted.extraText);
+							FileDisplay.onEnd("#backgroundReceived");
+							break;
+						case "css-background":
+
+							Whitelisted.processInsertBackgroundCSSImage(extraDataExtracted.content, extraDataExtracted.imageData, extraDataExtracted.reqID);
+							Gallery.addImageToGallery(extraDataExtracted.content, "cssGal", extraDataExtracted.extraText);
+							break;
+
+						case "css":
+							FileDisplay.onEnd("#cssReceived");
+							var fakeDataAttributeSinceQueuingNeedsOneAndCssDoesntHaveOne = Math.random().toString(36).substring(7) + "faked";
+							Whitelisted.processInsertCSSIframe(extraDataExtracted.content, fakeDataAttributeSinceQueuingNeedsOneAndCssDoesntHaveOne, extraDataExtracted.reqID);
+							break;
+
+						default:
+							debugger;
+							break;
+					}
+
+					// the ret object is the one returned from crypotgraphy method extracateFNFromString
+					function readExtraData(uuid, ret) {
+						var uuid = chunk.uuid;
+						window.pagesRecieved[uuid] = {};
+						window.pagesRecieved[uuid].url = ret.url;
+						window.pagesRecieved[uuid].reqID = ret.reqId;
+						window.pagesRecieved[uuid].type = ret.contentType;
+						console.log('\n' + '\n' + chunk.extra.reqID + ' ' + chunk.extra.url + 'ONLY INSIDE RECIPIENTTTTTTT ' + JSON.stringify(chunk.extra));
+						return;
+					};
+				};
+
+
+			}
+
+
+			/*
+			 * This function relays data, and encrypts it once, and is called in part of the chain. 
+			 */
+			function relayFile(file, DC) {
+				var FlagIfItIsString = false;
+				var stringParamInCallbackFlag = false
+				var DCSO = Queries.fetchDCSOByDC(DC);
+
+				var hexKey = Groups.getAssociatedKey(DCSO.connectionId);
+				Cryptography.encrypt(file, relayCB, hexKey, FlagIfItIsString, stringParamInCallbackFlag);
+
+				function relayCB(blob) {
+					var extra = {
+						chunkSize: 13 * 1000
+					};
+					var getNextChunkCallbackBF = getNextChunkCallback.bind(null, DC);
+					var fileRemade = new File([blob], "file.extra.url");
+					fileBufferReader.readAsArrayBuffer(fileRemade, function (uuid) {
+						fileBufferReader.getNextChunk(uuid, getNextChunkCallbackBF);
+					}, extra);
+
+				}
+			}
+
+
+			/**
+			 * Saves AES Keys on Datachannel Storage Object
+			 */
+			function addConsumerKeysToDCSO(dataChannelObj, key1, key2, key3) {
+				var consumerKeys = [key1, key2, key3];
+				dataChannelObj.consumerKeys = consumerKeys;
+			}
+			/*
+			 * turns dataURI to blob of Uint8array
+			 * used so that when we recieve image as datauri we can turn into blob for sending
+			 * 
+			 * copied from stack overflow here http://stackoverflow.com/questions/4998908/convert-data-uri-to-file-then-append-to-formdata
+			 * 
+			 * @param {string} base 64 encoded dataURI
+			 * @returns {Blob}
+			 * 
+			 */
+			function dataURItoBlob(dataURI) {
+				var byteString;
+				if (dataURI.split(',')[0].indexOf('base64') >= 0) {
+					byteString = atob(dataURI.split(',')[1]);
+				} else {
+					byteString = unescape(dataURI.split(',')[1]);
+				}
+				var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+				var ia = new Uint8Array(byteString.length);
+				for (var i = 0; i < byteString.length; i++) {
+					ia[i] = byteString.charCodeAt(i);
+				}
+				return new Blob([ia], {
+					type: mimeString
+				});
+			};
+
+
+			/*
+			 * called as callback when time finished on chat.
+			 * should call next state and 
+			 */
+
+
+			function start_count_down(until, callback) {
+				$("#count_down").countdown({
+					until: until,
+					format: 'S',
+					compact: true,
+					layout: '<span class="image{s10}"></span><span class="image{s1}"></span>',
+					onExpiry: callback
+				});
+			}
+
+			function insertErrorMessage() {
+				var msg = '<span style="color:red;">ERROR: </span> This browser does not support the webrtc datachannels technology used in this app. \n ';
+				msg += 'Any recent version of Chrome should';
+				$('body').replaceWith('<body> <h1>' + msg + '</h1> </body>');
+			};
+
+			function insertChromeErrorMessage() {
+				var msg = '<span style="color:red;">ERROR: </span> Initially I am only putting this on Chrome. \n ';
+				msg += 'Please try again using Google\'s Chrome browser';
+				$('body').replaceWith('<body> <h1>' + msg + '</h1> </body>');
+			};
+
+		});
+
+	});
+});
+
+
+/**
+ * Send server a message to indicate a datachannel is open ie complete. If it is not signalled as complete and the user leaves it will
+ * be replaced by the server. 
+ */
+function complete(connectionId) {
+	var DCSO = Queries.fetchDCSOByConnectionId(connectionId);
+	window.socket.emit('complete', connectionId);
+}
+
+/**
+*completely redundant ignore.
+*TODO: safely delete
+*
+*/
+function CANIBECALLED(flag) {
+
+	if (flag) {
+		console.error("I CAN BE CALLED WITH FLAG");
+		alert("I CAN BE CALLED WITH FLAG");
+	}
+
+	console.error("I CAN BE CALLED");
+	alert("I CAN BE CALLED");
+
+};
+
+/**
+ * ignore only for testing
+ */
+$(".highlight").on('click', function (event) {
+	event.stopPropagation();
+	event.stopImmediatePropagation();
+
+});
+
+function cannotViolateSameOriginPolicyErrorMessage() {
+	var msg = '<span style="color:red;">ERROR: </span> To use this program your browser must have turned off Same Origin Policy. \n ';
+	msg += ' This is required for this network to fetch requests. One way to do this in Chrome is to download the \n';
+	msg += '"allow-control-allow-origin " add-on from Chrome Web Store \n';
+	msg += '<a href="https://chrome.google.com/webstore/search/allow%20cross%20origin?hl=en">here</a> \n';
+	msg += '. Toggle it to on by clicking on the extension which should be displayed in the top corner of the browser.\n';
+	msg += 'Make sure to see our about page before using this service!';
+	$('#galleries').replaceWith('<strong id="cannotViolateSameOriginPolicyErrorMessage">' + msg + '</strong>');
+
+	DisplayStatus.fetchingHideTheURLBox();
+}
+</script>
+</body>
+</html>

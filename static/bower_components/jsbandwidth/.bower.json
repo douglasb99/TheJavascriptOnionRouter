@@ -1,0 +1,27 @@
+{
+  "name": "jsbandwidth",
+  "version": "1.1.2",
+  "description": "JsBandwidth - the JavaScript net speed test",
+  "author": "Adrian Ber",
+  "license": "MIT",
+  "homepage": "https://github.com/beradrian/jsbandwidth",
+  "main": "jsbandwidth.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "docs",
+    "Gruntfile.js",
+    "index.html",
+    "package.json"
+  ],
+  "_release": "1.1.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.1.2",
+    "commit": "262ca0488766a5240a7468977ffe82cf798df778"
+  },
+  "_source": "https://github.com/beradrian/jsbandwidth.git",
+  "_target": "^1.1.2",
+  "_originalSource": "jsbandwidth",
+  "_direct": true
+}
